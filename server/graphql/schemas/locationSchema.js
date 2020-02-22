@@ -2,19 +2,23 @@ const { gql } = require('apollo-server-koa');
 
 module.exports = gql`
   type Location {
-    id: ID!
+    _id: ID!
     title: String!
     offeredBy: User!
     description: String!
     location: String!
-    status: Sting!
+    status: String!
   }
   extend type Query {
-  location:(id:ID!): Location!
-  getSomeLocations: (points: [String!]): [Location!]!
+    location(id: ID!): Location!
+    getSomeLocations(points: [String!]): [Location!]!
   }
 
   extend type Mutation {
-   markLocation: (title: String!, point:String!): Location!,
+    markLocation(
+      title: String!
+      description: String!
+      point: String!
+    ): Location!
   }
 `;

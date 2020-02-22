@@ -1,6 +1,10 @@
 /* eslint-disable no-unused-vars */
 const { AuthenticationError, UserInputError } = require('apollo-server-koa');
-const { validateId, validatePoint, validatePoints } = require('../../validation');
+const {
+  validateId,
+  validatePoint,
+  validatePoints,
+} = require('../../validation');
 
 module.exports = {
   Query: {
@@ -16,12 +20,12 @@ module.exports = {
       if (!validateId(id)) {
         throw new UserInputError('Bad Id');
       }
-      const location = await locationModel.findOne({ id });
+      const location = await locationModel.findOne({ _id: id });
       return location;
     },
     getSomeLocations: async (
       parent,
-      points,
+      { points },
       { models: { locationModel }, me },
       info
     ) => {
@@ -46,7 +50,7 @@ module.exports = {
     markLocation: async (
       parent,
       { title, point, description },
-      { models: { locationModel }, me },
+      { models: { locationModel, userModel }, me },
       info
     ) => {
       if (!me) {
@@ -55,13 +59,18 @@ module.exports = {
       if (!validatePoint(point)) {
         throw new UserInputError('Point is invalid');
       }
-      const location = locationModel.create({
+
+      const location = await locationModel.create({
         offeredBy: me.id,
         title,
         location: point,
         description,
         status: 'dirty without event',
       });
+      await userModel.findOneAndUpdate(
+        { _id: me.id },
+        { $push: { added_locations: location._id } }
+      );
       return location;
     },
   },

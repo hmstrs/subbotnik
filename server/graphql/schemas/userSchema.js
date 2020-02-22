@@ -2,12 +2,12 @@ const { gql } = require('apollo-server-koa');
 
 module.exports = gql`
   type User {
-    id: ID!
+    _id: ID!
     nickname: String!
     email: String!
     score: Int!
-    visited_events: [Events!]!
-    created_events: [Events!]!
+    visited_events: [Event!]!
+    created_events: [Event!]!
     added_locations: [Location!]!
   }
   type Token {

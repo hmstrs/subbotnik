@@ -79,7 +79,9 @@ module.exports = {
       if (!isValid) {
         throw new UserInputError('Registration failed', { errors });
       }
+
       let foundUser = await userModel.findOne({ email });
+
       if (foundUser) {
         throw new UserInputError('Registration failed', {
           errors: {

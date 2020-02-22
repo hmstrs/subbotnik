@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const { Schema, models, model } = mongoose;
 
 const userSchema = new mongoose.Schema({
   nickname: {
@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
   visited_events: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Events',
+      ref: 'events',
       required: false,
       default: [],
     },
@@ -40,7 +40,7 @@ const userSchema = new mongoose.Schema({
   created_events: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Events',
+      ref: 'events',
       required: false,
       default: [],
     },
@@ -48,7 +48,7 @@ const userSchema = new mongoose.Schema({
   added_locations: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Locations',
+      ref: 'locations',
       required: false,
       default: [],
     },
@@ -60,4 +60,4 @@ userSchema.pre('save', function() {
   this.password = hashedPassword;
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = models.users || model('users', userSchema);

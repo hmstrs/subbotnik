@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const { Schema, models, model } = mongoose;
 
 const locationSchema = new mongoose.Schema({
   offeredBy: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'users',
     required: true,
   },
   description: {
@@ -29,4 +29,4 @@ const locationSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Location', locationSchema);
+module.exports = models.locations || model('locations', locationSchema);

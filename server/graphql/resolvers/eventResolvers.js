@@ -1,6 +1,10 @@
 /* eslint-disable no-unused-vars */
 const { AuthenticationError, UserInputError } = require('apollo-server-koa');
-const { validateId, validateNeededPeople, validateTitle } = require('../../validation');
+const {
+  validateId,
+  validateNeededPeople,
+  validateTitle,
+} = require('../../validation');
 
 module.exports = {
   Query: {
@@ -8,7 +12,7 @@ module.exports = {
       if (!validateId(id)) {
         throw new UserInputError('Bad Id');
       }
-      const event = await eventModel.findOne({ id });
+      const event = await eventModel.findOne({ _id: id });
       return event;
     },
   },
@@ -16,28 +20,45 @@ module.exports = {
   Mutation: {
     createEvent: async (
       parent,
-      { title, locations, nedeedPeople },
-      { models: { locationModel }, me },
+      { title, locations, neededPeople },
+      { models: { eventModel, locationModel, userModel }, me },
       info
     ) => {
       if (!me) {
         throw new AuthenticationError('You are not authenticated');
       }
-      if (!validateNeededPeople(nedeedPeople)) {
-        throw new UserInputError('Needed people must be between 1 and 100');
-      }
-      if (!validateTitle(title)) {
-        throw new UserInputError('Title can\'t be emplt');
-      }
+      //validation needed
+      // if (!validateNeededPeople(neededPeople)) {
+      //   throw new UserInputError('Needed people must be between 1 and 100');
+      // }
+      // if (!validateTitle(title)) {
+      //   throw new UserInputError("Title can't be emplt");
+      // }
 
-      const event = locationModel.create({
+      const event = await eventModel.create({
         createdBy: me.id,
         title,
-        nedeedPeople,
+        needed_people: neededPeople,
         people: [],
         locations,
         status: 'opened',
       });
+
+      //first elem only
+      await Promise.all(
+        locations.map(async locationId => {
+          return await locationModel.findOneAndUpdate(
+            { _id: locationId },
+            { $set: { status: 'dirty with event' } }
+          );
+        })
+      );
+
+      await userModel.findOneAndUpdate(
+        { _id: me.id },
+        { $push: { created_events: event._id } }
+      );
+
       return event;
     },
     visitEvent: async (
@@ -52,20 +73,18 @@ module.exports = {
       if (!validateId(id)) {
         throw new UserInputError('Bad Id');
       }
-      const event = await eventModel.findOne({ id });
-      event.people.push(me.id);
 
       const updatedEvent = await eventModel.findOneAndUpdate(
-        { id },
-        { $set: event },
-        { new: true }
+        { _id: id },
+        { $push: { people: me.id } }
       );
+
       return updatedEvent;
     },
     finishEvent: async (
       parent,
       { id },
-      { models: { eventModel, userModel }, me },
+      { models: { eventModel, userModel, locationModel }, me },
       info
     ) => {
       if (!me) {
@@ -74,30 +93,39 @@ module.exports = {
       if (!validateId(id)) {
         throw new UserInputError('Bad Id');
       }
-      const event = await eventModel.findOne({ id });
+      const event = await eventModel.findOne({ _id: id });
       if (event) {
         event.status = 'closed';
+        const { people, locations } = event;
+        //обрабатывает первый эл
         await Promise.all(
-          [event.people].map(async userId => {
-            const user = userModel.findOne({ id: userId });
-            user.visited_events.push(id);
-            await userModel.findOneAndUpdate(
+          people.map(async userId => {
+            return await userModel.findOneAndUpdate(
               { _id: userId },
-              {
-                $set: user,
-              },
-              { new: true }
+              { $push: { visited_events: id } }
+            );
+          })
+        );
+        //обрабатывает первый эл
+
+        await Promise.all(
+          locations.map(async locationId => {
+            return await locationModel.findOneAndUpdate(
+              { _id: locationId },
+              { $set: { status: 'clean' } }
             );
           })
         );
       }
 
       const updatedEvent = await eventModel.findOneAndUpdate(
-        { id },
+        { _id: id },
         { $set: event },
         { new: true }
       );
-      return updatedEvent;
+      if (updatedEvent) {
+        return { statusCode: 200 };
+      }
     },
   },
 };
