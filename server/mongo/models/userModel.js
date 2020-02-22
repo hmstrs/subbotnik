@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const userSchema = new mongoose.Schema({
-  name: {
+  nickname: {
     type: String,
     required: true,
   },
@@ -16,30 +16,28 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  games: [{
-    win: {
-      type: Boolean,
-      required: true,
-    },
-    song: {
-      type: Schema.Types.ObjectId,
-      ref: 'Song',
-      required: true,
-    },
-    tries: {
-      type: Number,
-      required: true,
-    },
-    offered: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Song',
-      required: true,
-    }],
-  }],
-  favourites: [{
+  score: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
+  visited_events: [{
     type: Schema.Types.ObjectId,
-    ref: 'Song',
-    required: true,
+    ref: 'Events',
+    required: false,
+    default: [],
+  }],
+  created_events: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Events',
+    required: false,
+    default: [],
+  }],
+  added_locations: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Locations',
+    required: false,
+    default: [],
   }],
 });
 
