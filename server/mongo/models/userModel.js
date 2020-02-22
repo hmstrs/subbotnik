@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const userSchema = new mongoose.Schema({
-  name: {
+  nickname: {
     type: String,
     required: true,
   },
@@ -16,31 +16,43 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  games: [{
-    win: {
-      type: Boolean,
-      required: true,
+  photo: {
+    url: {
+      type: String,
     },
-    song: {
+    public_id: {
+      type: String,
+    },
+  },
+  score: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
+  visited_events: [
+    {
       type: Schema.Types.ObjectId,
-      ref: 'Song',
-      required: true,
+      ref: 'Events',
+      required: false,
+      default: [],
     },
-    tries: {
-      type: Number,
-      required: true,
-    },
-    offered: [{
+  ],
+  created_events: [
+    {
       type: Schema.Types.ObjectId,
-      ref: 'Song',
-      required: true,
-    }],
-  }],
-  favourites: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Song',
-    required: true,
-  }],
+      ref: 'Events',
+      required: false,
+      default: [],
+    },
+  ],
+  added_locations: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Locations',
+      required: false,
+      default: [],
+    },
+  ],
 });
 
 userSchema.pre('save', function() {
