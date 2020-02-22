@@ -16,6 +16,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  photo: {
+    url: {
+      type: String
+    },
+    public_id: {
+      type: String
+    }
+  },
   score: {
     type: Number,
     required: false,

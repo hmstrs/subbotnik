@@ -18,6 +18,14 @@ const locationSchema = new mongoose.Schema({
   status: {
     type: String,
     enum: ['dirty without event', 'dirty with event', 'clean']
+  },
+  photo: {
+    url: {
+      type: String
+    },
+    public_id: {
+      type: String
+    }
   }
 });
 
