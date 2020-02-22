@@ -5,7 +5,7 @@ const locationSchema = new mongoose.Schema({
   offeredBy: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: false, 
+    required: true, 
   },
   description: {
     type: String,
