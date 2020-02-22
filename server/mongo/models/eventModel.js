@@ -1,23 +1,27 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const { Schema, models, model } = mongoose;
 
 const eventSchema = new mongoose.Schema({
   createdBy: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'users',
     required: true,
   },
-  people: [{
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: false,
-    default: [],
-  }],
-  locations: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Locations',
-    required: true,
-  }],
+  people: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'users',
+      required: false,
+      default: [],
+    },
+  ],
+  locations: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'locations',
+      required: true,
+    },
+  ],
   needed_people: {
     type: Number,
     required: false,
@@ -28,4 +32,4 @@ const eventSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Event', eventSchema);
+module.exports = models.events || model('events', eventSchema);

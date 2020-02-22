@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const { Schema, models, model } = mongoose;
 
 const locationSchema = new mongoose.Schema({
   offeredBy: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true, 
+    ref: 'users',
+    required: true,
   },
   description: {
     type: String,
@@ -17,16 +17,16 @@ const locationSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['dirty without event', 'dirty with event', 'clean']
+    enum: ['dirty without event', 'dirty with event', 'clean'],
   },
   photo: {
     url: {
-      type: String
+      type: String,
     },
     public_id: {
-      type: String
-    }
-  }
+      type: String,
+    },
+  },
 });
 
-module.exports = mongoose.model('Location', locationSchema);
+module.exports = models.locations || model('locations', locationSchema);

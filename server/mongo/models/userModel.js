@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const { Schema, models, model } = mongoose;
 
 const userSchema = new mongoose.Schema({
   nickname: {
@@ -18,35 +18,41 @@ const userSchema = new mongoose.Schema({
   },
   photo: {
     url: {
-      type: String
+      type: String,
     },
     public_id: {
-      type: String
-    }
+      type: String,
+    },
   },
   score: {
     type: Number,
     required: false,
     default: 0,
   },
-  visited_events: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Events',
-    required: false,
-    default: [],
-  }],
-  created_events: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Events',
-    required: false,
-    default: [],
-  }],
-  added_locations: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Locations',
-    required: false,
-    default: [],
-  }],
+  visited_events: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'events',
+      required: false,
+      default: [],
+    },
+  ],
+  created_events: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'events',
+      required: false,
+      default: [],
+    },
+  ],
+  added_locations: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'locations',
+      required: false,
+      default: [],
+    },
+  ],
 });
 
 userSchema.pre('save', function() {
@@ -54,4 +60,4 @@ userSchema.pre('save', function() {
   this.password = hashedPassword;
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = models.users || model('users', userSchema);

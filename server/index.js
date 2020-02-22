@@ -10,7 +10,8 @@ const schemas = require('./graphql/schemas');
 const resolvers = require('./graphql/resolvers');
 
 const userModel = require('./mongo/models/userModel');
-const songModel = require('./mongo/models/songModel');
+const locationModel = require('./mongo/models/locationModel');
+const eventModel = require('./mongo/models/eventModel');
 
 const app = new Koa();
 app.use(cors());
@@ -37,37 +38,41 @@ const server = new ApolloServer({
         me,
         models: {
           userModel,
-          songModel,
+          locationModel,
+          eventModel,
         },
       };
     }
   },
   subscriptions: {
     keepAlive: 1000,
-    onConnect: async (
-    // connectionParams,
-    // websocket,
-    // context
-    ) => {
-      console.log('🔌 WS Connected!');
-    },
+    onConnect: async () =>
+      // connectionParams,
+      // websocket,
+      // context
+      {
+        console.log('🔌 WS Connected!');
+      },
     onDisconnect: (_websocket, context) => {
-      console.log('📴 WS Disconnected! from ', JSON.stringify(context.request.socket._peername));
-    }
-  }
+      console.log(
+        '📴 WS Disconnected! from ',
+        JSON.stringify(context.request.socket._peername)
+      );
+    },
+  },
 });
 
 server.applyMiddleware({
   app,
   path: '/graphql',
-  cors: false
+  cors: false,
 });
 
 const httpServer = http.createServer(app.callback());
 
 server.installSubscriptionHandlers(httpServer);
 
-httpServer.listen({ port: process.env.PORT || 4000 }, () => {
+httpServer.listen({ port: 4000 }, () => {
   require('./mongo/db')();
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
   console.log(

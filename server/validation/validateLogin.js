@@ -13,7 +13,7 @@ const validateLogin = ({ email, password }) => {
   if (!isEmail(email)) errors.email = EMAIL_INCORRECT;
   return {
     errors,
-    isValid: isEmpty(errors)
+    isValid: isEmpty(errors),
   };
 };
 
