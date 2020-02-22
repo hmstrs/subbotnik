@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const { AuthenticationError, UserInputError } = require('apollo-server-koa');
-const { validateId } = require('../../validation');
+const { validateId, validatePoint, validatePoints } = require('../../validation');
 
 module.exports = {
   Query: {
@@ -28,7 +28,9 @@ module.exports = {
       if (!me) {
         throw new AuthenticationError('You are not authenticated');
       }
-      //need validation
+      if (!validatePoints(points)) {
+        throw new UserInputError('Point is invalid');
+      }
       const locations = await locationModel
         .find()
         .where('location')
@@ -50,7 +52,9 @@ module.exports = {
       if (!me) {
         throw new AuthenticationError('You are not authenticated');
       }
-      //need validation
+      if (!validatePoint(point)) {
+        throw new UserInputError('Point is invalid');
+      }
       const location = locationModel.create({
         offeredBy: me.id,
         title,

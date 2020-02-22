@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const { AuthenticationError, UserInputError } = require('apollo-server-koa');
-const { validateId } = require('../../validation');
+const { validateId, validateNeededPeople, validateTitle } = require('../../validation');
 
 module.exports = {
   Query: {
@@ -23,7 +23,13 @@ module.exports = {
       if (!me) {
         throw new AuthenticationError('You are not authenticated');
       }
-      //need validation
+      if (!validateNeededPeople(nedeedPeople)) {
+        throw new UserInputError('Needed people must be between 1 and 100');
+      }
+      if (!validateTitle(title)) {
+        throw new UserInputError('Title can\'t be emplt');
+      }
+
       const event = locationModel.create({
         createdBy: me.id,
         title,
