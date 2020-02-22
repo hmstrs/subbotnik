@@ -1,6 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { Col, Button } from 'react-bootstrap';
-import Navlink from '../../components/NavLink/NavLink';
 import jwt_decode from 'jwt-decode';
 import logout from '../../assets/icon-logout.svg';
 import './Profile.css';
@@ -76,33 +75,6 @@ const Profile = props => {
             <div className="text user-name">{user.name}</div>
           </div>
         </Col>
-        <Col xs={12} sm={{ span: 10, offset: 1 }}>
-          <div className="game-block">
-            <div className="card mx-auto">
-              <Navlink className="card-link" to="/history">
-                <div className="text">
-                  <span className="history">{user.games}</span>
-                  <br />
-                  <span className="sub-text">games</span>
-                </div>
-              </Navlink>
-            </div>
-            <div
-              style={{
-                marginTop: '49px'
-              }}
-              className="card mx-auto"
-            >
-              <Navlink className="card-link" to="/favourites">
-                <div className="text">
-                  <span className="history">{user.favourites}</span>
-                  <br />
-                  <span className="sub-text">favourites</span>
-                </div>
-              </Navlink>
-            </div>
-          </div>
-        </Col>
       </Fragment>
     );
 
@@ -110,7 +82,7 @@ const Profile = props => {
     <div className="Page Profile">
       <Col xs={12} sm={{ span: 10, offset: 1 }} className="header">
         <Col>
-          <div className="text">Profile</div>
+          <div className="text">Мой профиль</div>
         </Col>
         <Col>
           <Button

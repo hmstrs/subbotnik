@@ -20,7 +20,7 @@ header {
 	height: 40px;
 	width: 160px;
 
-	background: #BBCD41;
+	background: #F9D34C;
 	color: #fff !important;
   box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.15),
     -6px -6px 14px rgba(255, 255, 255, 0.15);
@@ -79,7 +79,7 @@ header {
 
 	.hero {
 		padding: 0 10%;
-		background: #BBCD41;
+		background: #F9D34C;
 	}
 
 	.hero h1 {

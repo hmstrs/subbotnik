@@ -1,13 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
-import {
-	FaUser,
-  FaPlus,
-  FaPlusCircle
-} from 'react-icons/fa';
-
-import { FiBarChart2, FiStar, FiMap } from 'react-icons/fi';
+import { FiUser, FiPlus, FiBarChart2, FiStar, FiMap } from 'react-icons/fi';
 import './NavBar.css';
 import NavLink from '../NavLink/NavLink';
 
@@ -17,7 +11,7 @@ const NavBar = ({ gameStarted, gameClickHandler }) => {
       <NavLink to="/" exact>
         <FiMap />
       </NavLink>
-      <NavLink to="/favourites">
+      <NavLink to="/events">
         <FiStar />
       </NavLink>
       <Button
@@ -25,13 +19,13 @@ const NavBar = ({ gameStarted, gameClickHandler }) => {
         onClick={gameClickHandler}
         className={`primary ${gameStarted && 'active'}`}
       >
-        {!gameStarted ? <FaPlusCircle fontSize='35px' /> : <FaPlus /> }
+        {!gameStarted ? <FiPlus fontSize='35px' /> : <FiPlus /> }
       </Button>
-      <NavLink to="/explore">
+      <NavLink to="/top">
         <FiBarChart2 />
       </NavLink>
       <NavLink to="/profile">
-        <FaUser />
+        <FiUser />
       </NavLink>
     </div>
   );

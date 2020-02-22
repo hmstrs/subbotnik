@@ -1,16 +1,16 @@
 .form-control {
   width: 80%;
   height: 54px;
-  background: #BBCD41;
-  /* border-color: #BBCD41; */
+  background: #F9D34C;
+  /* border-color: #F9D34C; */
   box-shadow: inset 2.88814px 2.88814px 14.4407px rgba(0, 0, 0, 0.15),
     inset -2.88814px -2.88814px 14.4407px rgba(255, 255, 255, 0.15);
   border-radius: 14.4407px;
 }
 
 form .form-control:focus {
-  border-color: #BBCD41;
-  background: #BBCD41;
+  border-color: #F9D34C;
+  background: #F9D34C;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.329);
 }
 
@@ -23,7 +23,7 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: inset 2.88814px 2.88814px 14.4407px rgba(0, 0, 0, 0.15),
-    0 0 0 30px #BBCD41 inset;
+    0 0 0 30px #F9D34C inset;
 }
 
 input:-webkit-autofill {

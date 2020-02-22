@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { Col, Spinner } from 'react-bootstrap';
 import gql from "graphql-tag";
 
-import './Explore.css';
+import './Events.css';
 
 const GET_TOP_SONGS = gql`
 	query {
@@ -34,12 +34,7 @@ const Explore = () => {
     loading || error ? (
 			<Spinner animation="border" />
     ) : (songs.map(({ title, artist }, i) => (
-			<div className="card card-explore" key={Math.random()}>
-				<div className="position">
-					{i+1}
-				</div>
-				<div>{title}<br/>by {artist}</div>
-			</div>
+		''
 		))
 		)
 
@@ -48,7 +43,7 @@ const Explore = () => {
 			<div className="Explore">
 				<Col xs={12} sm={{ span: 10, offset: 1 }} className="header">
 					<Col>
-						<div className="text">Explore</div>
+						<div className="text">Субботники</div>
 					</Col>
 				</Col>
 				{MainContent}

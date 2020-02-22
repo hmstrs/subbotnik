@@ -15,8 +15,10 @@
   display: flex;
 	align-items: center;
 	z-index: 100;
+}
 
-	background: #26282996;
+header .text {
+	color: #000 !important;
 }
 
 .avatar {
@@ -38,10 +40,10 @@
   font-family: SFfont;
   font-style: normal;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 28px;
   line-height: 29px;
   letter-spacing: -0.02em;
-  color: #ffffff;
+  color: #000;
 }
 
 .game-block {

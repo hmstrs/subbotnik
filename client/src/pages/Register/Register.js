@@ -19,13 +19,6 @@ const POST_USER = gql`
 `;
 
 const Register = props => {
-  const formSize = {
-    width: 295,
-    height: 389
-  };
-  const RegisterSize = {
-    height: 510
-  };
   const [errors, setErrors] = useState({});
   const [inputs, setInputs] = useState({
     name: '',
@@ -59,11 +52,6 @@ const Register = props => {
           <Col lg={8} className="mx-auto">
             <form onSubmit={onSubmit}>
               <div
-                style={{
-                  height: `${formSize.height}px`,
-                  width: `${formSize.width}px`,
-                  marginTop: `calc(50vh - ${RegisterSize.height / 2}px)`
-                }}
                 className="form-group mx-auto"
               >
                 <Row>
@@ -133,7 +121,6 @@ const Register = props => {
           className="mx-auto"
           style={{
             marginTop: '20px',
-            width: `${formSize.width}px`
           }}
         >
           <Col className="px-0">
@@ -141,9 +128,6 @@ const Register = props => {
           </Col>
           <Col className="px-0">
             <NavLink
-              style={{
-                width: `${formSize.width / 2}px`
-              }}
               className="button-register"
               to="/login"
             >

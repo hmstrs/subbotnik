@@ -41,7 +41,7 @@
 }
 
 .btn-new-game {
-  color: #BBCD41;
+  color: #F9D34C;
   width: 90%;
   font-family: SFfont;
   font-style: normal;
@@ -54,13 +54,13 @@
 }
 
 .btn-true {
-  color: #BBCD41;
+  color: #F9D34C;
 }
 .btn-false {
   color: #222;
 }
 .win-result {
-  color: #BBCD41;
+  color: #F9D34C;
 }
 .overlay-no-click {
   background-color: rgba(255, 255, 255, 0.425) !important;
