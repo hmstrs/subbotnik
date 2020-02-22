@@ -29,4 +29,4 @@ const locationSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Event', locationSchema);
+module.exports = mongoose.model('Location', locationSchema);
