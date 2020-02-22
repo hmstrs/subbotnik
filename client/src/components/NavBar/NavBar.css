@@ -1,0 +1,59 @@
+.NavBar {
+  width: 100vw;
+  height: 70px;
+  padding: 0 10px;
+  box-sizing: border-box;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+  justify-items: center;
+
+  transition: all ease 300ms;
+	background: #1b1c1d;
+
+	z-index: 101;
+}
+
+.btn-link {
+  color: #fff;
+}
+
+.btn-link:hover {
+  color: #f96900;
+}
+
+.NavBar .btn-link {
+  font-size: 24px;
+}
+
+.NavBar .btn-link.active {
+  color: #f96900;
+}
+
+.NavBar .primary {
+  width: 60px;
+  height: 60px;
+  line-height: 0px;
+
+  position: relative;
+  bottom: 30px;
+
+  background: #f96900 !important;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0px 6px 9px rgba(249, 105, 0, 0.25);
+  transition: all ease 300ms;
+}
+
+.NavBar .primary:hover {
+  box-shadow: 0px 10px 15px rgba(249, 105, 0, 0.4);
+}
+
+.NavBar .primary.active svg {
+  transform: rotateZ(45deg);
+}

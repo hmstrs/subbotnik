@@ -1,0 +1,86 @@
+.Login {
+  height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: none !important;
+}
+
+@font-face {
+  font-family: SFfont;
+  src: url(../../assets/SFProDisplay-Medium.woff);
+}
+
+.form-group {
+  background: #f96900;
+  border-radius: 15px;
+}
+
+.button-login {
+  background: #f96900;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15),
+    -5px -5px 15px rgba(255, 255, 255, 0.15);
+  border-radius: 15px;
+}
+
+.button-login:hover,
+.button-login:focus {
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15),
+    -1px -1px 4px rgba(255, 255, 255, 0.15);
+}
+
+.button-register {
+  background: #26282b;
+  box-shadow: -10px -10px 30px #33363a, 10px 10px 30px #191a1c;
+  border-radius: 10px;
+}
+
+.button-register:hover,
+.button-register:focus {
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15),
+    -1px -1px 4px rgba(255, 255, 255, 0.15);
+}
+
+.button-text {
+  font-family: SFfont;
+  font-style: normal;
+  font-weight: bold;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.02em;
+  color: #fffffa !important;
+}
+
+.button-text:hover {
+  box-shadow: none;
+}
+
+.text-no-acc {
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.text-login {
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.text-restore {
+  font-size: 14px;
+  text-decoration-line: underline;
+}
+
+.text-register {
+  font-size: 18px;
+  line-height: 21px;
+  text-decoration-line: none;
+}
