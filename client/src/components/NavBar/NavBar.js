@@ -2,36 +2,33 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 
 import {
-  FaHistory,
-  FaHeart,
-  FaCompass,
 	FaUser,
-	FaPlus
+  FaPlus,
+  FaPlusCircle
 } from 'react-icons/fa';
 
+import { FiBarChart2, FiStar, FiMap } from 'react-icons/fi';
 import './NavBar.css';
 import NavLink from '../NavLink/NavLink';
-
-import arno from '../../assets/arno.svg'
 
 const NavBar = ({ gameStarted, gameClickHandler }) => {
   return (
     <div className={`NavBar ${gameStarted ? 'moved' : ''}`}>
       <NavLink to="/" exact>
-        <FaHistory />
+        <FiMap />
       </NavLink>
       <NavLink to="/favourites">
-        <FaHeart />
+        <FiStar />
       </NavLink>
       <Button
         variant="link"
         onClick={gameClickHandler}
         className={`primary ${gameStarted && 'active'}`}
       >
-        {!gameStarted ? <img src={arno} alt=""/> : <FaPlus /> }
+        {!gameStarted ? <FaPlusCircle fontSize='35px' /> : <FaPlus /> }
       </Button>
       <NavLink to="/explore">
-        <FaCompass />
+        <FiBarChart2 />
       </NavLink>
       <NavLink to="/profile">
         <FaUser />
