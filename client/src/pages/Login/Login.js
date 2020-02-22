@@ -108,7 +108,7 @@ const Login = props => {
                 }}
                 className="px-0"
               >
-                <NavLink
+                {/* <NavLink
                   style={{
                     marginTop: '-7px'
                   }}
@@ -117,7 +117,7 @@ const Login = props => {
                   <span className="button-text text-restore">
                     Восстановить <br /> пароль
                   </span>
-                </NavLink>
+                </NavLink> */}
               </Col>
               <Button
                 onClick={onSubmit}

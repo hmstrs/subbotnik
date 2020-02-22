@@ -24,7 +24,7 @@
 }
 
 .btn-link:hover {
-  color: #f96900;
+  color: #BBCD41;
 }
 
 .NavBar .btn-link {
@@ -32,7 +32,7 @@
 }
 
 .NavBar .btn-link.active {
-  color: #f96900;
+  color: #BBCD41;
 }
 
 .NavBar .primary {
@@ -43,7 +43,7 @@
   position: relative;
   bottom: 30px;
 
-  background: #f96900 !important;
+  background: #BBCD41 !important;
   border: none;
   border-radius: 50%;
   box-shadow: 0px 6px 9px rgba(249, 105, 0, 0.25);

@@ -2,22 +2,22 @@ import React from 'react';
 
 import './Landing.css';
 
-import arno from '../../assets/arno.svg'
+import logo from '../../assets/logo.svg'
 import phone from '../../assets/phone.png'
 
 const Landing = props => {
   return (<div className='landing'>
 		<header>
-			<img src={arno} alt=""/>
+			<img src={logo} alt="" style={{width: 50}} />
 			<a className='btn' href="/login">ВОЙТИ</a>
 		</header>
 		<div className='hero'>
 			<div>
 				<h1>
-					Привет, я – arno,<br/> отгадаю любую песню!
+					Ждем тебя на Субботнике<br/>
 				</h1>
 				<h4>
-					Напой свои любимые строки и я попытаюсь определить <br/> какой композиции они пренадлежат!
+					Все любят находиться в чистоте, <br/>  а кто способен создавать чистоту вокруг себя?
 				</h4>
 				<a className='btn' href="/login">ВОЙТИ</a>
 			</div>

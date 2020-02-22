@@ -2,9 +2,9 @@
   <img src="./media/illustration.png"/>
 </p>
 
-# ИЗМЕНИТЬ – задание INT20H
-### Как ИЗМЕНИТЬ работает
-ОПИСАНИЕ<br/>
+# SUBBOTNIK – задание INT20H
+### Как SUBBOTNIK работает
+ОПИСАНИЕ SUBBOTNIK'a<br/>
 
 ### Техническое задание
 - [x]

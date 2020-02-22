@@ -21,12 +21,12 @@
 }
 
 .form-group {
-  background: #f96900;
+  background: #BBCD41;
   border-radius: 15px;
 }
 
 .button-login {
-  background: #f96900;
+  background: #BBCD41;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15),
     -5px -5px 15px rgba(255, 255, 255, 0.15);
   border-radius: 15px;
@@ -39,8 +39,7 @@
 }
 
 .button-register {
-  background: #26282b;
-  box-shadow: -10px -10px 30px #33363a, 10px 10px 30px #191a1c;
+  background: #BBCD41;
   border-radius: 10px;
 }
 
@@ -57,14 +56,15 @@
   align-items: center;
   text-align: center;
   letter-spacing: -0.02em;
-  color: #fffffa !important;
+  color: #fffffa ;
 }
-
+/*
 .button-text:hover {
   box-shadow: none;
-}
+} */
 
 .text-no-acc {
+	color: #000;
   font-size: 12px;
   line-height: 14px;
 }
@@ -75,12 +75,12 @@
 }
 
 .text-restore {
+	color: #000 !important;
   font-size: 14px;
-  text-decoration-line: underline;
 }
 
 .text-register {
   font-size: 18px;
   line-height: 21px;
-  text-decoration-line: none;
+
 }

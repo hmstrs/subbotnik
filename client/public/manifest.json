@@ -1,6 +1,6 @@
 {
-  "short_name": "ИЗМЕНИТЬ",
-  "name": "ИЗМЕНИТЬ",
+  "short_name": "SUBBOTNIK",
+  "name": "SUBBOTNIK",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "ИЗМЕНИТЬ",
-  "background_color": "ИЗМЕНИТЬ"
+  "theme_color": "#BBCD41",
+  "background_color": "#BBCD41"
 }

@@ -80,7 +80,7 @@ const History = () => {
           <div className="win">
             <FaTrophy
               style={{
-                color: win ? '#f96900' : '#fff',
+                color: win ? '#BBCD41' : '#fff',
                 fontSize: '56px'
               }}
             />{' '}

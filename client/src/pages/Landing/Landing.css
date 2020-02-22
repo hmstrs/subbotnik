@@ -20,7 +20,7 @@ header {
 	height: 40px;
 	width: 160px;
 
-	background: #f96900;
+	background: #BBCD41;
 	color: #fff !important;
   box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.15),
     -6px -6px 14px rgba(255, 255, 255, 0.15);
@@ -60,7 +60,7 @@ header {
 }
 
 .hero h4 {
-	color: #ffffffcc;
+	color: #363827;
 }
 
 .hero .btn {
@@ -79,7 +79,7 @@ header {
 
 	.hero {
 		padding: 0 10%;
-		background: #f96900;
+		background: #BBCD41;
 	}
 
 	.hero h1 {
