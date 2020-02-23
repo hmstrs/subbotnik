@@ -17,6 +17,7 @@ const GET_ALL_LOCATIONS = gql`
   query getAllLocations($all: String!) {
     getAllLocations(all: $all) {
       location
+      status
     }
   }
 `;
@@ -34,6 +35,12 @@ const POST_LOCATION = gql`
   }
 `;
 
+const prepareData = arr =>
+  arr.map(({ location, status }) => {
+    const [longitude, latitude] = location.split(';');
+    return { status, latitude: Number(latitude), longitude: Number(longitude) };
+  });
+
 const Map = () => {
   const [viewport, setViewport] = useState({
     width: '100vw',
@@ -48,9 +55,13 @@ const Map = () => {
       all: ''
     }
   });
+  const [markers, setMarkers] = useState([]);
+
   useEffect(() => {
     if (data) {
-      console.log(data);
+      const { getAllLocations } = data;
+
+      setMarkers(markers => [...markers, ...prepareData(getAllLocations)]);
     }
   }, [data]);
 
@@ -60,7 +71,6 @@ const Map = () => {
 
   const [showModal, setShowModal] = useState(false);
 
-  const [markers, setMarkers] = useState([]);
   const [inputs, setInputs] = useState({
     title: '',
     description: '',
@@ -82,13 +92,21 @@ const Map = () => {
     })
       .then(res => {
         setErrors({});
-        console.log(res);
+        const {
+          data: { markLocation }
+        } = res;
+        const { status, location } = markLocation;
+        const [longitude, latitude] = location.split(';');
 
-        setMarkers(markers => [...markers, { ...chunk }]);
+        setMarkers(markers => [
+          ...markers,
+          { status, latitude: Number(latitude), longitude: Number(longitude) }
+        ]);
       })
       .catch(err => {
-        // console.log(err);
-        if (err.graphQLErrors.length > 0) {
+        console.log(err);
+
+        if (err && err.graphQLErrors.length > 0) {
           const { code, errors } = err.graphQLErrors[0].extensions;
           code === 'BAD_USER_INPUT' && setErrors(errors);
         } else setErrors({ ...errors, description: err.networkError.message });
@@ -105,7 +123,12 @@ const Map = () => {
     margin: 10
   };
 
-  console.log(markers);
+  const getColor = status =>
+    ({
+      'dirty without event': 'red',
+      clean: 'green',
+      'dirty with event': 'orange'
+    }[status]);
 
   const MainContent =
     loading || error ? (
@@ -129,7 +152,7 @@ const Map = () => {
         </div>
         {markers.map((m, i) => (
           <Marker longitude={m.longitude} latitude={m.latitude} key={i}>
-            <span className="dot red"></span>
+            <span className={`dot ${getColor(m.status)}`}></span>
           </Marker>
         ))}
       </ReactMapboxGL>

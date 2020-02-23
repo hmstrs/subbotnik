@@ -28,6 +28,8 @@ const Login = props => {
       }
     },
     onError: err => {
+      console.log(err);
+
       if (err.graphQLErrors.length > 0) {
         const { code, errors } = err.graphQLErrors[0].extensions;
         code === 'BAD_USER_INPUT' && setErrors(errors);
@@ -51,42 +53,35 @@ const Login = props => {
     <div className="Login">
       <div>
         <form onSubmit={onSubmit}>
-          <div
-            className="form-group mx-auto"
-          >
-						<input
-							error={errors.email}
-							type="email"
-							name="email"
-							placeholder="Эл. Почта"
-							value={inputs.email}
-							onChange={onChange}
-						/>
-						<input
-							error={errors.password}
-							type="password"
-							name="password"
-							placeholder="Пароль"
-							value={inputs.password}
-							onChange={onChange}
-						/>
-						<button
-							onClick={onSubmit}
-							className="button-login"
-						>
-						<span className="button-text text-login">Войти</span>
-					</button>
-					<div>
-						<Link
-							className="button-register"
-							to="/register"
-						>Нет аккаунта? Регистрация</Link>
-					</div>
+          <div className="form-group mx-auto">
+            <input
+              error={errors.email}
+              type="email"
+              name="email"
+              placeholder="Эл. Почта"
+              value={inputs.email}
+              onChange={onChange}
+            />
+            <input
+              error={errors.password}
+              type="password"
+              name="password"
+              placeholder="Пароль"
+              value={inputs.password}
+              onChange={onChange}
+            />
+            <button onClick={onSubmit} className="button-login">
+              <span className="button-text text-login">Войти</span>
+            </button>
+            <div>
+              <Link className="button-register" to="/register">
+                Нет аккаунта? Регистрация
+              </Link>
+            </div>
           </div>
         </form>
       </div>
-      <div>
-      </div>
+      <div></div>
     </div>
   );
 };
