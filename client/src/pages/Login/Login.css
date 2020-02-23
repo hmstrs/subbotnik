@@ -1,18 +1,46 @@
 .Login {
   height: 100vh;
-  width: 100%;
-  box-sizing: border-box;
-  text-align: center;
+	width: 100vw;
+	min-width: 256px;
+  background: #F9D34C;
   position: fixed;
   top: 0;
   left: 0;
+}
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.form-group {
+	height: 100vh;
+	width: 25vw;
+	min-width: 256px;
+	background: #fff;
+	position: fixed;
+  top: 0;
+	left: 0;
 
-  background: none !important;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.form-group input {
+	margin-bottom: 25px;
+	width: 80%;
+	height: 50px;
+	font-size: 18px;
+	border: none;
+	border-bottom: 1px solid #ddd;
+}
+
+.form-group input:hover, .form-group input:focus {
+	border-bottom: 1px solid #F9D34C;
+}
+
+.form-group div {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
 }
 
 @font-face {
@@ -20,16 +48,15 @@
   src: url(../../assets/SFProDisplay-Medium.woff);
 }
 
-.form-group {
-  background: #F9D34C;
-  border-radius: 15px;
-}
-
 .button-login {
+	border: none;
+	height: 50px;
+	padding: 0 25px;;
+	font-size: 22px;
   background: #F9D34C;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15),
     -5px -5px 15px rgba(255, 255, 255, 0.15);
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 .button-login:hover,
@@ -38,49 +65,17 @@
     -1px -1px 4px rgba(255, 255, 255, 0.15);
 }
 
-.button-register {
-  background: #F9D34C;
-  border-radius: 10px;
-}
-
-.button-register:hover,
-.button-register:focus {
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15),
-    -1px -1px 4px rgba(255, 255, 255, 0.15);
-}
-
 .button-text {
-  font-family: SFfont;
-  font-style: normal;
-  font-weight: bold;
-  align-items: center;
-  text-align: center;
-  letter-spacing: -0.02em;
-  color: #fffffa ;
+	display: block;
+	line-height: 35px;
 }
-/*
-.button-text:hover {
-  box-shadow: none;
-} */
 
-.text-no-acc {
+.button-register {
+	border: none;
+	margin-top: 25px;
 	color: #000;
-  font-size: 12px;
-  line-height: 14px;
-}
-
-.text-login {
-  font-size: 18px;
-  line-height: 21px;
-}
-
-.text-restore {
-	color: #000 !important;
-  font-size: 14px;
-}
-
-.text-register {
-  font-size: 18px;
-  line-height: 21px;
-
+	height: 35px;
+	padding: 0 25px;
+	font-size: 22px;
+	font-weight: bold;
 }
