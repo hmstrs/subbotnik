@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Container, Col, Row, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import NavLink from '../../components/NavLink/NavLink';
-import TextInput from '../../components/TextInput/TextInput';
 import getDiffpx from '../../tools/getDiffpx';
 
 import './Register.css';
@@ -47,95 +46,63 @@ const Register = props => {
 
   return (
     <div className="Register">
-      <Container fluid={true}>
-        <Row>
-          <Col lg={8} className="mx-auto">
             <form onSubmit={onSubmit}>
-              <div
-                className="form-group mx-auto"
-              >
-                <Row>
-                  <Col>
-                    <TextInput
-                      style={{
-                        marginTop: '40px'
-                      }}
-                      className="mx-auto"
-                      type="text"
-                      error={errors.name}
-                      name="name"
-                      placeholder="Имя пользователя"
-                      value={inputs.name}
-                      onChange={onChange}
-                    />
-
-                    <TextInput
-                      style={{
-                        marginTop: `${getDiffpx(errors.name, 40)}px`
-                      }}
-                      error={errors.email}
-                      className="mx-auto"
-                      type="email"
-                      name="email"
-                      placeholder="Эл. Почта"
-                      value={inputs.email}
-                      onChange={onChange}
-                    />
-                    <TextInput
-                      style={{
-                        marginTop: `${getDiffpx(errors.email, 40)}px`
-                      }}
-                      className="mx-auto"
-                      error={errors.password}
-                      type="password"
-                      name="password"
-                      placeholder="Пароль"
-                      value={inputs.password}
-                      onChange={onChange}
-                    />
-                  </Col>
-                </Row>
-                <Row
-                  style={{
-                    marginTop: `${getDiffpx(errors.password, 30)}px`
-                  }}
-                >
-                  <Col>
-                    <Button
-                      onClick={onSubmit}
-                      variant="link"
-                      size="lg"
-                      className="button-login"
-                    >
-                      <span className="button-text text-login">
-                        Зарегистрироваться
-                      </span>
-                    </Button>
-                  </Col>
-                </Row>
-              </div>
+						<div className="form-group mx-auto">
+							<input
+								style={{
+									marginTop: '40px'
+								}}
+								className="mx-auto"
+								type="text"
+								error={errors.name}
+								name="name"
+								placeholder="Имя пользователя"
+								value={inputs.name}
+								onChange={onChange}
+							/>
+							<input
+								style={{
+									marginTop: `${getDiffpx(errors.name, 40)}px`
+								}}
+								error={errors.email}
+								className="mx-auto"
+								type="email"
+								name="email"
+								placeholder="Эл. Почта"
+								value={inputs.email}
+								onChange={onChange}
+							/>
+							<input
+								style={{
+									marginTop: `${getDiffpx(errors.email, 40)}px`
+								}}
+								className="mx-auto"
+								error={errors.password}
+								type="password"
+								name="password"
+								placeholder="Пароль"
+								value={inputs.password}
+								onChange={onChange}
+							/>
+							<button
+								onClick={onSubmit}
+								variant="link"
+								size="lg"
+								className="button-login"
+							>
+								<span className="button-text text-login">
+									Зарегистрироваться
+								</span>
+							</button>
+							<NavLink
+								className="button-register"
+								to="/login"
+							>
+								<span className="button-text text-login"> Уже есть аккаунт? Войти</span>
+							</NavLink>
+							</div>
             </form>
-          </Col>
-        </Row>
-        <Row
-          className="mx-auto"
-          style={{
-            marginTop: '20px',
-          }}
-        >
-          <Col className="px-0">
-            <p className="mt-3 button-text text-have-acc">Уже есть аккаунт?</p>
-          </Col>
-          <Col className="px-0">
-            <NavLink
-              className="button-register"
-              to="/login"
-            >
-              <span className="button-text text-login">Войти</span>
-            </NavLink>
-          </Col>
-        </Row>
-      </Container>
+
     </div>
   );
 };
