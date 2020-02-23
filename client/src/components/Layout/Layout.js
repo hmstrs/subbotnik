@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import Main from '../Main/Main';
-import ArnoChat from '../ArnoChat/ArnoChat';
+// import ArnoChat from '../ArnoChat/ArnoChat';
 // import './Layout.css';
 
 const Layout = ({ children }) => {
@@ -8,10 +8,10 @@ const Layout = ({ children }) => {
   const gameClickHandler = () => setGameStarted(!gameStarted);
   return (
     <Fragment>
-      <ArnoChat
+      {/* <ArnoChat
         gameStarted={gameStarted}
         className={gameStarted ? 'active' : ''}
-      />
+      /> */}
       <Main
         gameClickHandler={gameClickHandler}
         gameStarted={gameStarted}

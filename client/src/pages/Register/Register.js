@@ -24,6 +24,7 @@ const Register = props => {
     email: '',
     password: ''
   });
+
   const onChange = e =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   const [postUser] = useMutation(POST_USER);
@@ -32,11 +33,15 @@ const Register = props => {
       variables: inputs
     })
       .then(res => {
-        // console.log('res', res);
+        alert();
+
+        console.log('res', res);
         props.history.push('/login');
       })
       .catch(err => {
-        // console.log(err);
+        alert();
+
+        console.log(err);
         if (err.graphQLErrors.length > 0) {
           const { code, errors } = err.graphQLErrors[0].extensions;
           code === 'BAD_USER_INPUT' && setErrors(errors);
@@ -54,10 +59,10 @@ const Register = props => {
             }}
             className="mx-auto"
             type="text"
-            error={errors.name}
-            name="name"
+            error={errors.nickname}
+            name="nickname"
             placeholder="Имя пользователя"
-            value={inputs.name}
+            value={inputs.nickname}
             onChange={onChange}
           />
           <input
@@ -94,7 +99,6 @@ const Register = props => {
           </button>
           <NavLink className="button-register" to="/login">
             <span className="button-text text-login">
-              {' '}
               Уже есть аккаунт? Войти
             </span>
           </NavLink>
