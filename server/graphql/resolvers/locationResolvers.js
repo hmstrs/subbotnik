@@ -4,6 +4,7 @@ const {
   validateId,
   validatePoint,
   validatePoints,
+  validateLocation,
 } = require('../../validation');
 
 module.exports = {
@@ -22,6 +23,20 @@ module.exports = {
       }
       const location = await locationModel.findOne({ _id: id });
       return location;
+    },
+    getAllLocations: async (
+      parent,
+      { all },
+      { models: { locationModel }, me },
+      info
+    ) => {
+      if (!me) {
+        throw new AuthenticationError('You are not authenticated');
+      }
+
+      const locations = await locationModel.find({});
+
+      return locations;
     },
     getSomeLocations: async (
       parent,
@@ -58,6 +73,15 @@ module.exports = {
       }
       if (!validatePoint(point)) {
         throw new UserInputError('Point is invalid');
+      }
+
+      const { isValid, errors } = validateLocation({
+        title,
+        point,
+        description,
+      });
+      if (!isValid) {
+        throw new UserInputError('Registration failed', { errors });
       }
 
       const location = await locationModel.create({

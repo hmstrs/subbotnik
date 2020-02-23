@@ -10,10 +10,10 @@ import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
 const POST_USER = gql`
-  mutation createUser($name: String!, $password: String!, $email: String!) {
-    createUser(name: $name, password: $password, email: $email) {
-      name
-      id
+  mutation createUser($nickname: String!, $password: String!, $email: String!) {
+    createUser(nickname: $nickname, password: $password, email: $email) {
+      nickname
+      _id
     }
   }
 `;
@@ -21,7 +21,7 @@ const POST_USER = gql`
 const Register = props => {
   const [errors, setErrors] = useState({});
   const [inputs, setInputs] = useState({
-    name: '',
+    nickname: '',
     email: '',
     password: ''
   });
@@ -51,9 +51,7 @@ const Register = props => {
         <Row>
           <Col lg={8} className="mx-auto">
             <form onSubmit={onSubmit}>
-              <div
-                className="form-group mx-auto"
-              >
+              <div className="form-group mx-auto">
                 <Row>
                   <Col>
                     <TextInput
@@ -62,16 +60,16 @@ const Register = props => {
                       }}
                       className="mx-auto"
                       type="text"
-                      error={errors.name}
-                      name="name"
-                      placeholder="Имя пользователя"
-                      value={inputs.name}
+                      error={errors.nickname}
+                      name="nickname"
+                      placeholder="Ник пользователя"
+                      value={inputs.nickname}
                       onChange={onChange}
                     />
 
                     <TextInput
                       style={{
-                        marginTop: `${getDiffpx(errors.name, 40)}px`
+                        marginTop: `${getDiffpx(errors.nickname, 40)}px`
                       }}
                       error={errors.email}
                       className="mx-auto"
@@ -120,17 +118,14 @@ const Register = props => {
         <Row
           className="mx-auto"
           style={{
-            marginTop: '20px',
+            marginTop: '20px'
           }}
         >
           <Col className="px-0">
             <p className="mt-3 button-text text-have-acc">Уже есть аккаунт?</p>
           </Col>
           <Col className="px-0">
-            <NavLink
-              className="button-register"
-              to="/login"
-            >
+            <NavLink className="button-register" to="/login">
               <span className="button-text text-login">Войти</span>
             </NavLink>
           </Col>

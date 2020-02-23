@@ -11,6 +11,7 @@ module.exports = gql`
   }
   extend type Query {
     location(id: ID!): Location!
+    getAllLocations(all: String!): [Location]!
     getSomeLocations(points: [String!]): [Location!]!
   }
 
